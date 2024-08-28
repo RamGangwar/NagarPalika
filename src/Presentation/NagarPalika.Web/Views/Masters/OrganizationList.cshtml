@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Organization List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Masters/OrganizationList">Masters</a></li>
+            <li class="breadcrumb-item active">Organization List</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" href="/Masters/AddOrganization">Add New</a>
+    </div>
+
+</div>
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="card">
+                    <h5 class="card-title">Organization List</h5>
+                    <table class="table datatable" id="tblOrgList">
+                        <thead>
+                            <tr>
+                                <th>Name </th>
+                                <th>Code</th>
+                                <th>Short Name</th>
+                                <th>Created Date</th>
+                                <th>Mobile No</th>
+                                <th>Email</th>
+                                <th>GST No</th>
+                                <th>District</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/scripts/organization.js"></script>
+<script>
+    $(document).ready(function () {
+        bindOrgList();
+    });
+  
+</script>

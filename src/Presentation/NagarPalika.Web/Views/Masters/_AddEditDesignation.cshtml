@@ -1,0 +1,44 @@
+﻿@using NagarPalika.Application.Commands.Designations
+@model CreateDesignationCommand
+
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            @{
+                if (Model.DesignationId > 0)
+                {
+                    <h5 class="modal-title">Edit Designation</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Add Designation</h5>
+                }
+            }
+
+            <button type="button" class="btn-close popupclose"  data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            @using (Html.BeginForm("AddEditDesignation", "Masters", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditDesignation" }))
+            {
+                <div class="col-md-6">
+                    @Html.HiddenFor(h=>h.DesignationId)
+                    @Html.LabelFor(l=>l.DesignationName,"Designation Name*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.DesignationName,new{@class="form-control", placeholder="Designation Name"})
+                    @Html.ValidationMessageFor(v=>v.DesignationName)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.DesignationLevel,"Designation Level*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.DesignationLevel,new{@class="form-control", placeholder="Designation Level"})
+                    @Html.ValidationMessageFor(v=>v.DesignationLevel)
+                </div>
+                
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary popupclose" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

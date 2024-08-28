@@ -1,0 +1,91 @@
+﻿@using NagarPalika.Application.Commands.FineCriterias
+@model CreateFineCriteriaCommand
+
+@{
+    ViewData["Title"] = "Add FineCriteria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/BillingMaster/AddEditFineCriteria">Masters</a></li>
+            <li class="breadcrumb-item active">Add Fine Criteria</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" href="/BillingMaster/FineCriteriaList">Back</a>
+    </div>
+
+</div>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Fine Criteria</h5>
+                        @using (Html.BeginForm("AddEditFineCriteria", "BillingMaster", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditFineCriteria", enctype = "multipart/form-data" }))
+                        {
+                            @Html.HiddenFor(h=>h.FineCriteriaId)
+                            <div class="col-md-6">
+                                @{
+                                    List<SelectListItem> items = new List<SelectListItem>();
+                                    items.Add(new SelectListItem { Text = "Residential", Value = "Residential", Selected = true });
+                                    items.Add(new SelectListItem { Text = "Commercial", Value = "Commercial" });
+                                }
+                                @Html.LabelFor(l=>l.PropertyType,"Property Type" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.PropertyType,new SelectList(@items,"Value","Text"),"Select Property Type",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.PropertyType)
+                            </div>
+
+
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.ARVThreshold,"ARV Condition Applicable" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.ARVThreshold,new{@class="form-control", placeholder="ARV Condition Applicable",onkeypress="return isNumberKey(event,this)"})
+                            </div>
+                           
+                            <div class="col-md-12">
+                                <table class="table datatable" id="tblTaxesList">
+                                    <thead>
+                                        <tr>
+                                            <th>Applicable Tax</th>
+                                            <th>Value (%) Less Than ARV</th>
+                                            <th>Value (%) More Than ARV</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>House Tax</td>
+                                            <td>@Html.TextBoxFor(m=>m.HouseTax_LessThan,new{@class="form-control",onkeypress="return isNumberKey(event,this)"})</td>
+                                            <td>@Html.TextBoxFor(m=>m.HouseTax_MoreThan,new{@class="form-control",onkeypress="return isNumberKey(event,this)"})</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Water Tax</td>
+                                            <td>@Html.TextBoxFor(m=>m.WaterTax_LessThan,new{@class="form-control",onkeypress="return isNumberKey(event,this)"})</td>
+                                            <td>@Html.TextBoxFor(m=>m.WaterTax_MoreThan,new{@class="form-control",onkeypress="return isNumberKey(event,this)"})</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Sewer/Roof Tax</td>
+                                            <td>@Html.TextBoxFor(m=>m.SewerTax_LessThan,new{@class="form-control",onkeypress="return isNumberKey(event,this)"})</td>
+                                            <td>@Html.TextBoxFor(m=>m.SewerTax_MoreThan,new{@class="form-control",onkeypress="return isNumberKey(event,this)"})</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" id="buttonReset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/scripts/FineCriteria.js"></script>

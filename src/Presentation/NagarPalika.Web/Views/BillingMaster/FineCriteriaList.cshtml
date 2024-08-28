@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Fine Criteria List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .textright {
+        text-align: right;
+    }
+</style>
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/BillingMaster/FineCriteriaList">Billing Master</a></li>
+            <li class="breadcrumb-item active">Fine Criteria List</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" href="/BillingMaster/AddEditFineCriteria" target="_blank" id="btnAddNew">Add New</a>
+    </div>
+
+</div>
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="card">
+                    <h5 class="card-title">Fine Criteria List</h5>
+                    <table class="table datatable" id="tblFineCriteriaList">
+                        <thead>
+                            <tr style="font-size:x-small">
+                                <th>Property Type</th>
+                                <th>ARV Threshold</th>
+                                <th>House Tax Less Than</th>
+                                <th>House Tax More Than</th>
+                                <th>Water Tax Less Than</th>
+                                <th>Water Tax More Than</th>
+                                <th>Sewer Tax Less Than</th>
+                                <th>Sewer Tax More Than</th>
+                                <th>Created Date</th>
+                                <th>Created By</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="addFineCriteria">
+</div>
+<script src="~/scripts/FineCriteria.js"></script>
+<script>
+    $(document).ready(function () {
+        bindFineCriteriaList();
+    });
+
+</script>

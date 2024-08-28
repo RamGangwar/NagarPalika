@@ -1,0 +1,40 @@
+﻿@using NagarPalika.Application.Commands.Role
+@model CreateRolesCommand
+
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            @{
+                if (Model.RoleId > 0)
+                {
+                    <h5 class="modal-title">Edit Role</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Add Role</h5>
+                }
+            }
+
+            <button type="button" class="btn-close popupclose" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            @using (Html.BeginForm("AddEditRole", "Masters", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditRole" }))
+            {
+                <div class="col-md-6">
+                    @Html.HiddenFor(h=>h.RoleId)
+                    @Html.LabelFor(l=>l.RoleName,"Role Name*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.RoleName,new{@class="form-control", placeholder="Role Name"})
+                    @Html.ValidationMessageFor(v=>v.RoleName)
+                </div>
+               
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary popupclose" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

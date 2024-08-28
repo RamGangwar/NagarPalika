@@ -1,0 +1,151 @@
+﻿@using NagarPalika.Application.Commands.TradeRegistrations
+@model CreateTradeRegistrationCommand
+
+@{
+    ViewData["Title"] = "Add TradeRegistration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/BillingMaster/AddEditTradeRegistration">Masters</a></li>
+            <li class="breadcrumb-item active">Add Trade Registration</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" href="/TradeLicence/TradeRegistrationList">Back</a>
+    </div>
+
+</div>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Trade Registration</h5>
+                        @using (Html.BeginForm("AddEditTradeRegistration", "TradeLicence", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditTradeRegistration", enctype = "multipart/form-data" }))
+                        {
+                            @Html.HiddenFor(h=>h.TradeRegistrationId)
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.ZoneId,"Zone" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.ZoneId,new SelectList(ViewBag.ZoneList,"ZoneId","ZoneName"),"Select Zone",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.ZoneId)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.WardId,"Ward" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.WardId,new SelectList(ViewBag.WardList,"WardId","WardName"),"Select Ward",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.WardId)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.LocalityId,"Locality" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.LocalityId,new SelectList(ViewBag.LocalityList,"LocalityId","LocalityName"),"Select Locality",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.LocalityId)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.TradeCategoryId,"Trade Catrgory" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.TradeCategoryId,new SelectList(ViewBag.TradeCate,"TradeCategoryId","TradeCategoryName"),"Select Trade Catrgory",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.TradeCategoryId)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.TradeSubCategoryId,"Trade Sub Catrgory" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.TradeSubCategoryId,new SelectList(ViewBag.SubCategory,"TradeSubCategoryId","TradeSubCategoryName"),"Select Trade Sub Catrgory",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.TradeSubCategoryId)
+                            </div>
+
+
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.TradeCode,"Trade Code" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.TradeCode,new{@class="form-control", placeholder="Trade Code"})
+                                @Html.ValidationMessageFor(v=>v.TradeCode)
+                            </div>
+                            <div class="col-md-4">
+                                @{
+                                    List<SelectListItem> items = new List<SelectListItem>();
+                                    items.Add(new SelectListItem { Text = "Fresh", Value = "Fresh", Selected = true });
+                                    items.Add(new SelectListItem { Text = "Renewal", Value = "Renewal" });
+                                }
+                                @Html.LabelFor(l=>l.ApplicationType,"Application Type" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.ApplicationType,new SelectList(@items,"Value","Text"),"Select Application Type",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.ApplicationType)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.OwnerName,"Owner Name" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.OwnerName,new{@class="form-control", placeholder="Owner Name"})
+                                @Html.ValidationMessageFor(v=>v.OwnerName)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.FatherName,"Father Name" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.FatherName,new{@class="form-control", placeholder="Father Name"})
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.MobileNo,"Mobile No" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.MobileNo,new{@class="form-control", placeholder="Mobile No"})
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.Email,"Email" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.Email,new{@class="form-control", placeholder="Email"})
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.Religion,"Religion" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.Religion,new{@class="form-control", placeholder="Religion"})
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.IdProofType,"Id Proof Type" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.IdProofType,new{@class="form-control", placeholder="Id Proof Type"})
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.IdProofNo,"Id Proof No" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.IdProofNo,new{@class="form-control", placeholder="Id Proof No"})
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.Gender,"Gender" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.Gender,new{@class="form-control", placeholder="Gender"})
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.HouseNo,"House No" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.HouseNo,new{@class="form-control", placeholder="House No"})
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.TradeName,"Trade Name" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.TradeName,new{@class="form-control", placeholder="Trade Name"})
+                                @Html.ValidationMessageFor(v=>v.TradeName)
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.TradeAddress,"Trade Address" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.TradeAddress,new{@class="form-control", placeholder="Trade Address"})
+                            </div>
+
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.ARVEffectedDate,"ARV Effected Date" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.ARVEffectedDate,"{0:yyyy-MM-dd}",new{@class="form-control",type="date", placeholder="ARV Effected Date"})
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.Arrear,"Arrear" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.Arrear,new{@class="form-control", placeholder="Arrear"})
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.ArrearFrom,"Arrear From" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.ArrearFrom,new{@class="form-control", placeholder="Arrear From"})
+                            </div>
+                            <div class="col-md-4">
+                                @Html.LabelFor(l=>l.ArrearTill,"Arrear Till" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.ArrearTill,new{@class="form-control", placeholder="Arrear Till"})
+                            </div>
+
+
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" id="buttonReset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/scripts/TradeRegistration.js"></script>

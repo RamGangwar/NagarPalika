@@ -1,0 +1,118 @@
+﻿@using NagarPalika.Application.Commands.User
+@model CreateEmployeeCommand
+
+@{
+    ViewData["Title"] = "Add Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Masters/AddEditEmployee">Masters</a></li>
+            <li class="breadcrumb-item active">Add Employee</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" href="/Masters/EmployeeList">Back</a>
+    </div>
+
+</div>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Employee</h5>
+                        @using (Html.BeginForm("AddEditEmployee", "Masters", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditEmployee", enctype = "multipart/form-data" }))
+                        {
+                            @Html.HiddenFor(h=>h.EmployeeId)
+                            var isedit = Model.EmployeeId > 0 ? "none" : "";
+
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.UserName,"User Name" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.UserName,new{@class="form-control", placeholder="User Name"})
+                                @Html.ValidationMessageFor(v=>v.UserName)
+                            </div>
+                            <div class="col-md-6" style="display:@isedit">
+                                @Html.LabelFor(l=>l.Password,"Password" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.Password,new{@class="form-control", type="password", placeholder="Password"})
+                                @Html.ValidationMessageFor(v=>v.Password)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.EmployeeName,"Employee Name" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.EmployeeName,new{@class="form-control", placeholder="Employee Name"})
+                                @Html.ValidationMessageFor(v=>v.EmployeeName)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.FatherName,"Father Name" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.FatherName,new{@class="form-control", placeholder="Father Name"})
+                                @Html.ValidationMessageFor(v=>v.FatherName)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.MobileNo,"Mobile No" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.MobileNo,new{@class="form-control", placeholder="Mobile No"})
+                                @Html.ValidationMessageFor(v=>v.MobileNo)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.AlternateMobileNo,"Alternate Mobile No" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.AlternateMobileNo,new{@class="form-control", placeholder="Alternate Mobile No"})
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.EmailId,"Email" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.EmailId,new{@class="form-control", placeholder="Email"})
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.FullAddress,"Full Address" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.FullAddress,new{@class="form-control", placeholder="Full Address"})
+                                @Html.ValidationMessageFor(v=>v.FullAddress)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.OrganizationId,"Organization" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.OrganizationId,new SelectList(ViewBag.OrgList,"OrgId","OrgName"),"Select Organization",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.OrganizationId)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.DepartmentId,"Department" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.DepartmentId,new SelectList(ViewBag.DeptList,"DepartmentId","DepartmentName"),"Select Department",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.DepartmentId)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.DesignationId,"Designation" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.DesignationId,new SelectList(ViewBag.DesignationList,"DesignationId","DesignationName"),"Select Designation",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.DesignationId)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.Level,"Level" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.Level,new{@class="form-control", placeholder="Level"})
+                                @Html.ValidationMessageFor(v=>v.Level)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.ReportingEmployeeId,"Reporting Manager" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.ReportingEmployeeId,new SelectList(ViewBag.EmpList,"EmployeeId","EmployeeName"),"Select Reporting Manager",new{@class="form-control"})
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.RoleId,"Role" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.RoleId,new SelectList(ViewBag.RoleList,"RoleId","RoleName"),"Select Role",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.RoleId)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.UserTypeId,"User Type" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.UserTypeId,new SelectList(ViewBag.UserTypeList,"UserTypeId","UserTypeName"),"Select User Type",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.UserTypeId)
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" id="buttonReset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/scripts/Employee.js"></script>

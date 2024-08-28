@@ -1,0 +1,49 @@
+﻿@using NagarPalika.Application.Commands.Localitys
+@model CreateLocalityCommand
+
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            @{
+                if (Model.LocalityId > 0)
+                {
+                    <h5 class="modal-title">Edit Locality</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Add Locality</h5>
+                }
+            }
+
+            <button type="button" class="btn-close popupclose" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            @using (Html.BeginForm("AddEditLocality", "Masters", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditLocalitys" }))
+            {
+                <div class="col-md-6">
+                    @Html.HiddenFor(h=>h.LocalityId)
+                    @Html.LabelFor(l=>l.LocalityName,"Locality Name*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.LocalityName,new{@class="form-control", placeholder="Locality Name"})
+                    @Html.ValidationMessageFor(v=>v.LocalityName)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.LocalityCode,"Locality Code*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.LocalityCode,new{@class="form-control", placeholder="Locality Code"})
+                    @Html.ValidationMessageFor(v=>v.LocalityCode)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.WardId,"Ward*" ,new{@class="form-label"})
+                    @Html.DropDownListFor(m=>m.WardId,new SelectList(ViewBag.WardList,"WardId","WardName"),"Select Ward",new{@class="form-control"})
+                    @Html.ValidationMessageFor(v=>v.WardId)
+                </div>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary popupclose" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

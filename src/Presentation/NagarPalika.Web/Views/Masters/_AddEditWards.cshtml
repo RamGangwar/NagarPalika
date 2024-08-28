@@ -1,0 +1,49 @@
+﻿@using NagarPalika.Application.Commands.Ward
+@model CreateWardsCommand
+
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            @{
+                if (Model.WardId > 0)
+                {
+                    <h5 class="modal-title">Edit Ward</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Add Ward</h5>
+                }
+            }
+
+            <button type="button" class="btn-close popupclose" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            @using (Html.BeginForm("AddEditWards", "Masters", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditWards" }))
+            {
+                <div class="col-md-6">
+                    @Html.HiddenFor(h=>h.WardId)
+                    @Html.LabelFor(l=>l.WardName,"Ward Name*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.WardName,new{@class="form-control", placeholder="Ward Name"})
+                    @Html.ValidationMessageFor(v=>v.WardName)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.WardNo,"Ward No*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.WardNo,new{@class="form-control", placeholder="Ward No"})
+                    @Html.ValidationMessageFor(v=>v.WardNo)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.ZoneId,"Zone*" ,new{@class="form-label"})
+                    @Html.DropDownListFor(m=>m.ZoneId,new SelectList(ViewBag.ZoneList,"ZoneId","ZoneName"),"Select Zone",new{@class="form-control"})
+                    @Html.ValidationMessageFor(v=>v.ZoneId)
+                </div>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary popupclose" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

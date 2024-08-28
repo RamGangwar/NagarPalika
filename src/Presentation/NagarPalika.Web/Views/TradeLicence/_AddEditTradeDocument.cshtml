@@ -1,0 +1,42 @@
+﻿@using NagarPalika.Application.Commands.TradeDocuments
+@model CreateTradeDocumentCommand
+
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            @{
+                if (Model.TradeDocumentId > 0)
+                {
+                    <h5 class="modal-title">Edit Trade Document</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Add Trade Document</h5>
+                }
+            }
+
+            <button type="button" class="btn-close popupclose" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            @using (Html.BeginForm("AddEditTradeDocument", "TradeLicence", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditTradeDocument", enctype = "multipart/form-data" }))
+            {
+
+                <div class="col-md-12">
+                    @Html.HiddenFor(h=>h.TradeDocumentId)
+                    @Html.LabelFor(l=>l.TradeDocumentName,"Trade Document*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.TradeDocumentName,new{@class="form-control", placeholder="Trade Document"})
+                    @Html.ValidationMessageFor(v=>v.TradeDocumentName)
+                </div>
+               
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary popupclose" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,917 @@
+﻿@{
+    ViewData["Title"] = "Manage";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <ul>
+            <li><input type="radio" value="1" id="tilldate" checked><label for="tilldate">Till Date</label></li>
+            <li><input type="radio" value="3" id="today_1"><label for="today_1">Today</label></li>
+            <li><input type="radio" value="2" id="d_range" class="dateS"><label for="d_range">Date Range</label></li>
+        </ul>
+    </div>
+</div>
+<div class="top_form mb-3">
+    <div class="col-md-12">
+
+        <div class="layout_form">
+            <div class="in1 t_date col-md-2">
+                <label>Date From:</label>
+                <input type="text" class="form-control" value="17-01-2024">
+            </div>
+            <div class="in1 t_date col-md-2">
+                <label>Till Date</label>
+                <input type="text" class="form-control" value="17-01-2024">
+            </div>
+            <div class="in1 col-md-3">
+                <label>Zone</label>
+                <select class="form-select" aria-label="State">
+                    <option selected>New York</option>
+                    <option value="1">Select </option>
+                    <option value="2">New</option>
+                </select>
+            </div>
+            <div class="in1 col-md-3">
+                <label>Ward</label>
+                <select class="form-select" aria-label="State">
+                    <option selected> </option>
+                    <option value="1">Select </option>
+                    <option value="2">New</option>
+                </select>
+            </div>
+
+            <div class="s_btn mt-4">
+                <input type="submit" value="Search">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Page Title -->
+
+<section class="section dashboard">
+    <div class="row">
+
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+            <div class="row">
+
+
+                <div class="card">
+
+                    <h5 class="card-title bg_h">Sub Total</h5>
+
+                    <!-- Vertical Pills Tabs -->
+                    <div class="d-flex align-items-start p-3 border">
+                        <div class="nav flex-column nav-pills  " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link active na_ac" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Property Tax</button>
+                            <button class="nav-link na_ac" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> Water Charges</button>
+                            <button class="nav-link na_ac" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"> Trade & Licence</button>
+
+
+                        </div>
+                        <div class="tab-content border p-3" id="v-pills-tabContent" style="width:100%;    min-height: 150px;">
+                            <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <!--start  -->
+                                <div class="row">
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card primary mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Property / Household </h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card yellow mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Demand / Outstanding</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card blue mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Collection</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card danger mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Balance Outstanding</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Sales Card -->
+                            </div>
+
+                            <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                <!--start  -->
+                                <div class="row">
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card primary mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Property / Household </h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card yellow mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Demand / Outstanding</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card blue mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Collection</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card danger mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Balance Outstanding</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Sales Card -->
+
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                                <!--start  -->
+                                <div class="row">
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card primary mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Property / Household </h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card yellow mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Demand / Outstanding</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card blue mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Collection</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card danger mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Balance Outstanding</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Sales Card -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Vertical Pills Tabs -->
+
+
+                </div>
+
+            </div>
+        </div><!-- End Left side columns -->
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+            <div class="row">
+
+
+                <div class="card py-3">
+
+                    <h5 class="card-title bg_h">Head Wise Tax Generated and Payment Breakup</h5>
+
+                    <!-- Vertical Pills Tabs -->
+                    <div class="d-flex align-items-start p-3 border">
+                        <div class="nav flex-column nav-pills  " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link active na_ac" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home1" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Property Tax</button>
+                            <button class="nav-link na_ac" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile1" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> Water Charges</button>
+
+                        </div>
+                        <div class="tab-content border p-3" id="v-pills-tabContent" style="width:100%;    min-height: 500px;">
+                            <div class="tab-pane fade show active" id="v-pills-home1" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <!--start  -->
+                                <div class="row">
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card primary mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Property / Household </h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card yellow mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Demand / Outstanding</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card blue mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Collection</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card danger mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Balance Outstanding</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Sales Card -->
+                            </div>
+
+                            <div class="tab-pane fade" id="v-pills-profile1" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                <!--start  -->
+                                <div class="row">
+                                    ....
+                                </div>
+                                <!-- End Sales Card -->
+
+                            </div>
+                            <!-- end -->
+
+
+                        </div>
+                    </div>
+                    <!-- End Vertical Pills Tabs -->
+
+
+                </div>
+
+            </div>
+        </div>
+        <!-- End-columns -->
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+            <div class="row">
+
+
+                <div class="card py-3">
+
+                    <h5 class="card-title bg_h">Head Wise Tax Generated and Payment Breakup</h5>
+
+                    <!-- Vertical Pills Tabs -->
+                    <div class="d-flex align-items-start p-3 border">
+                        <div class="nav flex-column nav-pills  " id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <button class="nav-link active na_ac" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home1" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Property Tax</button>
+                            <button class="nav-link na_ac" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile1" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> Water Charges</button>
+
+                        </div>
+                        <div class="tab-content border p-3" id="v-pills-tabContent" style="width:100%;    min-height: 500px;">
+                            <div class="tab-pane fade show active" id="v-pills-home1" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                                <!--start  -->
+                                <div class="row">
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card primary mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Property / Household </h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card yellow mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Demand / Outstanding</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card blue mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Collection</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <!-- End Sales Card -->
+                                    <!-- Sales Card -->
+                                    <div class="col-xxl-3 col-md-3">
+                                        <div class="info-card sales-card danger mcard">
+
+                                            <div class="filter">
+                                                <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                                                    <li class="dropdown-header text-start">
+                                                        <h6>Filter</h6>
+                                                    </li>
+
+                                                    <li><a class="dropdown-item" href="#">Today</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Month</a></li>
+                                                    <li><a class="dropdown-item" href="#">This Year</a></li>
+                                                </ul>
+                                            </div>
+                                            <h5 class="card-title">Total Balance Outstanding</h5>
+                                            <div class="card-body">
+
+
+                                                <div class="d-flex align-items-center">
+                                                    <div class="card-icon rounded-circle d-flex align-items-center justify-content-center">
+                                                        <i class="bi bi-cart"></i>
+                                                    </div>
+                                                    <div class="ps-3">
+                                                        <h6>145</h6>
+                                                        <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
+
+                                                    </div>
+                                                </div>
+                                                <p> Total No Of Properties / Household Registered</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- End Sales Card -->
+                            </div>
+
+                            <div class="tab-pane fade" id="v-pills-profile1" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                                <!--start  -->
+                                <div class="row">
+                                </div>
+                                <!-- End Sales Card -->
+
+                            </div>
+                            <!-- end -->
+
+
+                        </div>
+                    </div>
+                    <!-- End Vertical Pills Tabs -->
+
+
+                </div>
+
+            </div>
+        </div>
+        <!-- End-columns -->
+
+    </div>
+</section>

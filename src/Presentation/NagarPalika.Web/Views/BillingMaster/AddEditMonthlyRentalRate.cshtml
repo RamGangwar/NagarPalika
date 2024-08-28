@@ -1,0 +1,74 @@
+﻿@using NagarPalika.Application.Commands.MonthlyRentalRates
+@model CreateMonthlyRentalRateCommand
+
+@{
+    ViewData["Title"] = "Add MonthlyRentalRate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/BillingMaster/AddEditMonthlyRentalRate">Masters</a></li>
+            <li class="breadcrumb-item active">Add Monthly Rental Rate</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" href="/BillingMaster/MonthlyRentalRateList">Back</a>
+    </div>
+
+</div>
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Monthly Rental Rate</h5>
+                        @using (Html.BeginForm("AddEditMonthlyRentalRate", "BillingMaster", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditMonthlyRentalRate", enctype = "multipart/form-data" }))
+                        {
+                            @Html.HiddenFor(h=>h.MonthlyRentalRateId)
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.WardId,"Ward" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.WardId,new SelectList(ViewBag.WardList,"Id","Name"),"Select Ward",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.WardId)
+                            </div>
+                             <div class="col-md-6">
+                                @Html.LabelFor(l=>l.LocalityId,"Locality" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.LocalityId,new SelectList(ViewBag.LocalityList,"Id","Name"),"Select Locality",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.LocalityId)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.RaodWidthTypeId,"Raod Width Type" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.RaodWidthTypeId,new SelectList(ViewBag.RoadWidthList,"Id","Name"),"Select Raod Width Type",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.RaodWidthTypeId)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.ConstructionTypeId,"Construction Type" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.ConstructionTypeId,new SelectList(ViewBag.ConstructionList,"Id","Name"),"Select Construction Type",new{@class="form-control"})
+                                @Html.ValidationMessageFor(v=>v.ConstructionTypeId)
+                            </div>
+
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.ConstructedAreaRate,"Constructed Area Rate" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.ConstructedAreaRate,new{@class="form-control", placeholder="Constructed Area Rate"})
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.EmptyAreaRate,"Empty Area Rate" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.EmptyAreaRate,new{@class="form-control", placeholder="Empty Area Rate"})
+                            </div>
+
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" id="buttonReset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<script src="~/scripts/MonthlyRentalRate.js"></script>

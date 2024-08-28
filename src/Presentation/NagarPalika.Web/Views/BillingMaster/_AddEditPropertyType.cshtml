@@ -1,0 +1,54 @@
+﻿@using NagarPalika.Application.Commands.PropertyTypes
+@model CreatePropertyTypeCommand
+
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            @{
+                if (Model.PropertyTypeId > 0)
+                {
+                    <h5 class="modal-title">Edit Property Type</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Add Property Type</h5>
+                }
+            }
+
+            <button type="button" class="btn-close popupclose" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            @using (Html.BeginForm("AddEditPropertyType", "BillingMaster", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditPropertyType", enctype = "multipart/form-data" }))
+            {
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.Grade,"Grade*" ,new{@class="form-label"})
+                    @Html.DropDownListFor(m=>m.Grade,new SelectList(ViewBag.GradeList,"Value","Text"),"Select Grade",new{@class="form-control", placeholder="Grade"})
+                    @Html.ValidationMessageFor(v=>v.Grade)
+                </div>
+                <div class="col-md-6">
+                    @Html.HiddenFor(h=>h.PropertyTypeId)
+                    @Html.LabelFor(l=>l.PropertyTypeName,"Property Type*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.PropertyTypeName,new{@class="form-control", placeholder="Property Type"})
+                    @Html.ValidationMessageFor(v=>v.PropertyTypeName)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.CommercialFactor,"Commercial Factor*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.CommercialFactor,new{@class="form-control", placeholder="Commercial Factor"})
+                    @Html.ValidationMessageFor(v=>v.CommercialFactor)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.IconUrl,"Upload Picture" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.IconUrl,new{@class="form-control", type="file",accept="image/*", placeholder="Upload Picture"})
+                </div>
+                
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary popupclose" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

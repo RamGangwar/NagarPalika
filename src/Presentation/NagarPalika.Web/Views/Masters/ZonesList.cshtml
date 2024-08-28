@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Zone List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Masters/ZoneList">Masters</a></li>
+            <li class="breadcrumb-item active">Zone List</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addZone" id="btnAddNew">Add New</a>
+    </div>
+
+</div>
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="card">
+                    <h5 class="card-title">Zone List</h5>
+                    <table class="table datatable" id="tblZoneList">
+                        <thead>
+                            <tr>
+                                <th>Zone </th>
+                                <th>Zone Code</th>
+                                <th>District</th>
+                                <th>Created Date</th>
+                                <th>Created By</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="addZone">
+</div>
+<script src="~/scripts/Zones.js"></script>
+<script>
+    $(document).ready(function () {
+        bindZoneList();
+    });
+
+</script>

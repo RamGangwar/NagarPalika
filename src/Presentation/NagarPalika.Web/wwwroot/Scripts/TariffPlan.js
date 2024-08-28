@@ -1,0 +1,245 @@
+﻿$(document).on('submit', '#frmAddEditTariffPlan', function (e) {
+    debugger;
+    e.preventDefault();
+    if ($(this).valid()) {
+
+        $('#progress').show();
+        $.ajax({
+            type: $(this).attr("method"),
+            url: $(this).attr("action"),
+            data: $(this).serialize(),
+            datatype: "json",
+            async: false,
+            success: function (response) {
+
+                if (response == null) {
+                    $('#progress').hide();
+                    swal("Error", "There is some error please try later!", "error");
+                }
+                else if (response.succeeded == true) {
+                    $('#progress').hide();
+                    swal({
+                        title: "Success",
+                        icon: "success",
+                        text: response.message,
+                        type: 'success',
+                        button: "OK",
+                        closeOnClickOutside: false
+                    }).then(function () {
+                        window.location.href = "/BillingMaster/TariffPlanList";
+                    });
+
+                } else if (response.succeeded == false) {
+                    $('#progress').hide();
+                    swal("Error!", response.message, "error");
+                } else {
+                    $('#progress').hide();
+                    swal({
+                        title: "Error!",
+                        icon: "error",
+                        text: "Please try again.",
+                        type: "error',",
+                    }).then(function () {
+
+                    });
+                }
+            }
+        });
+    }
+});
+
+function bindTariffPlanList() {
+
+    if ($.fn.DataTable.isDataTable('#tblTariffPlanList')) {
+        $('#tblTariffPlanList').DataTable().destroy();
+    }
+    $('#progress').show();
+    $("#tblTariffPlanList").DataTable({
+        searching: false,
+        "order": [],
+        info: true,
+        "sDom": 'Rfrtlip',
+        "oLanguage": {
+            "sLengthMenu": "Page Size _MENU_ ",
+            "sEmptyTable": "No record found"
+        },
+        serverSide: true,
+        processing: true,
+        orderMulti: false,
+        destroy: true,
+        lengthChange: true,
+        pageLength: 10,
+        scrollY: 300,
+        scrollX: true,
+        scroller: true,
+        "bInfo": false,
+        autoWidth: false,
+        lengthMenu: [[10, 20, 50, 1000], [10, 20, 50, "All"]],
+        ajax: {
+            url: '/BillingMaster/BindTariffPlanList',
+            method: 'Post',
+            type: 'Json',
+            dataSrc: function (response) {
+                console.log(response.data);
+                $('#progress').hide();
+                return response.data;
+
+            }
+        },
+
+        "order": [],
+        columns: [
+            {
+                'sortable': true,
+                'data': 'propertyType',
+                'className': 'textleft'
+            },
+            {
+                'sortable': true,
+                'data': 'arV_Assessed',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'houseTax_LessThan',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'houseTax_MoreThan',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'waterTax_LessThan',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'waterTax_MoreThan',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'sewerTax_LessThan',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'sewerTax_MoreThan',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'arV_NonAssessed',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'houseTax_LessThan_ForNonAssessed',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'houseTax_MoreThan_ForNonAssessed',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'waterTax_LessThan_ForNonAssessed',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'waterTax_MoreThan_ForNonAssessed',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'sewerTax_LessThan_ForNonAssessed',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'sewerTax_MoreThan_ForNonAssessed',
+                'className': 'textright'
+            },
+            {
+                'sortable': true,
+                'data': 'createdOn',
+                'className': 'textleft',
+                "render": function (data, type, row, meta) {
+                    return moment(row.createdOn).format("DD/MM/YYYY");
+                }
+            },
+            {
+                'sortable': true,
+                'data': 'employeeName',
+                'className': 'textleft'
+            },
+            {
+                'sortable': false,
+                'data': 'tariffPlanId',
+                'className': 'textleft',
+                "render": function (data, type, row, meta) {
+                    var renderBody = "";
+                    renderBody = renderBody + '<div class="actionLink">';
+
+                    renderBody = renderBody + '<a href="/BillingMaster/AddEditTariffPlan?Id=' + data + '" target="_blank"><img src="../img/edit.png" alt=""></a>';
+
+                    renderBody = renderBody + '<a href="javascript:void(0)" onclick="DeleteEmp(' + data + ')" class="btnDelOrg"><img src="../img/delete.png" alt=""></a>';
+
+                    renderBody = renderBody + '</div>';
+                    return renderBody;
+                }
+            },
+
+        ],
+        "drawCallback": function (settings) {
+            $('#progress').hide();
+        },
+    });
+
+}
+
+function DeleteEmp(degId) {
+    swal({
+        title: "Are you sure, You want to delete?",
+        icon: "warning",
+        buttons: ["No", "Yes"],//true,     
+        dangerMode: true,
+        closeOnClickOutside: false,
+    }).then(val => {
+        debugger;
+        if (!val) throw null;
+        $('#progress').show();
+        $.ajax({
+            type: 'POST',
+            url: '/BillingMaster/DeleteTariffPlan',
+            data: { TariffPlanId: degId },
+            datatype: "json",
+            success: function (response) {
+                if (response.succeeded) {
+                    swal({
+                        title: "Success",
+                        icon: "success",
+                        text: response.message,
+                        type: 'success',
+                        closeOnClickOutside: false
+                    });
+                    $('#progress').hide();
+                    bindTariffPlanList();
+                }
+                else {
+                    $('#progress').hide();
+                    swal("Error!", "Please try again", "error");
+                }
+            },
+            error: function () {
+                $('#progress').hide();
+            }
+        });
+    });
+    //$(".swal-button--confirm").addClass("okButtonBlue");
+    //$(".swal-button--cancel").parent('div').css('float', 'right');
+}

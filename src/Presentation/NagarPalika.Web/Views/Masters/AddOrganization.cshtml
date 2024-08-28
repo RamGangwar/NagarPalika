@@ -1,0 +1,135 @@
+﻿@using NagarPalika.Application.Commands.Organization
+@model CreateOrganizationCommand
+
+@{
+    ViewData["Title"] = "Add Organization";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Masters/AddOrganization">Masters</a></li>
+            <li class="breadcrumb-item active">Add Organization</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" href="/Masters/OrganizationList">Back</a>
+    </div>
+
+</div>
+
+<!-- End Page Title -->
+
+<section class="section dashboard">
+    <div class="row">
+        <!-- Left side columns -->
+        <div class="col-lg-12">
+            <div class="row">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Add Organization</h5>
+                        @using (Html.BeginForm("AddOrganization", "Masters", FormMethod.Post, new { @class = "row g-3", id = "frmAddOrganization", enctype = "multipart/form-data" }))
+                        {
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.OrgName,"Organization Name*" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.OrgName,new{@class="form-control", placeholder="Organization Name"})
+                                @Html.ValidationMessageFor(v=>v.OrgName)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.OrgCode,"Organization Code*" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.OrgCode,new{@class="form-control", placeholder="Organization Code"})
+                                @Html.ValidationMessageFor(v=>v.OrgCode)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.ShortName,"Short Name*" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.ShortName,new{@class="form-control", placeholder="ShortName"})
+                                @Html.ValidationMessageFor(v=>v.ShortName)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.Email,"Email*" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.Email,new{@class="form-control", placeholder="Email"})
+                                @Html.ValidationMessageFor(v=>v.Email)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.LandLineNo,"Landline No" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.LandLineNo,new{@class="form-control", placeholder="Land Line No"})
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.MobileNo,"Mobile No*" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.MobileNo,new{@class="form-control", placeholder="Mobile No"})
+                                @Html.ValidationMessageFor(v=>v.MobileNo)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.Address1,"Address 1" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.Address1,new{@class="form-control", placeholder="Address 1"})
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.Address2,"Address 2" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.Address2,new{@class="form-control", placeholder="Address 2"})
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.PinCode,"Pin Code" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.PinCode,new{@class="form-control", placeholder="Pin Code"})
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.GSTNo,"GST No" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m=>m.GSTNo,new{@class="form-control", placeholder="GST No"})
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.ULBType,"ULB Type*" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.ULBType, new SelectList(ViewBag.ULBTypeList,"Value","Text"),"Select ULB Type" ,new{@class="form-select"})
+                                @Html.ValidationMessageFor(v=>v.ULBType)
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.DistrictId,"District" ,new{@class="form-label"})
+                                @Html.DropDownListFor(m=>m.DistrictId, new SelectList(ViewBag.DistrictList,"DistrictId","DistrictName"),"Select District" ,new{@class="form-select"})
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(l=>l.OrgLogo,"Upload Logo" ,new{@class="form-label"})
+                                @Html.TextBoxFor(m => m.OrgLogo, new { @type = "file", @class = "form-control", @accept = "image/png, image/jpg, image/jpeg", @id = "OrgLogo", placeholder="Upload Logo" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(l=>l.IsHouseTax ," House Tax",new{@class="form-label"})
+                                <div class="form-check form-switch">
+                                    @Html.CheckBoxFor(m => m.IsHouseTax, new { @class="form-check-input ", placeholder="House Tax" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(l=>l.IsWaterTax," Water Tax" ,new{@class="form-label"})
+                                <div class="form-check form-switch">
+                                    @Html.CheckBoxFor(m => m.IsWaterTax, new { @class="form-check-input", placeholder="House Tax" })
+
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                @Html.LabelFor(l=>l.IsSewerTax," Sewer Tax" ,new{@class="form-label"})
+                                <div class="form-check form-switch">
+                                    @Html.CheckBoxFor(m => m.IsSewerTax, new { @class="form-check-input", placeholder="House Tax" })
+
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="button" id="buttonReset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- End Left side columns -->
+
+
+
+    </div>
+</section>
+<script src="~/scripts/organization.js"></script>
+<script>
+    $(document).ready(function () {
+        //$('#ULBType').select2({});
+    });
+</script>

@@ -1,0 +1,147 @@
+﻿@using NagarPalika.Application.Commands.AccessPermissions
+@model CreateAccessPermissionCommand
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Permission</h5>
+        @using (Html.BeginForm("AssignPermission", "Masters", FormMethod.Post, new { id = "frmAssignPermission", enctype = "multipart/form-data" }))
+        {
+            <!-- Default Accordion -->
+            @Html.HiddenFor(m=>m.RoleId,new{@id="hdnRoleId"})
+            var parentlist = Model.PermissionDatas.Where(w => w.ParentId == 0).ToList();
+            foreach (var item in parentlist)
+            {
+                int indx = Model.PermissionDatas.FindIndex(a => a.ModuleId == item.ModuleId);
+                var canViewKey = "H_CanView_" + indx;
+                var canAddKey = "H_CanAdd_" + indx;
+                var canEditKey = "H_CanEdit_" + indx;
+                var canDeleteKey = "H_CanDelete_" + indx;
+
+                <div class="accordion" id="Acr_@item.ModuleId">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="head_@item.ModuleId">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#coll_@item.ModuleId" aria-expanded="false" aria-controls="coll_@item.ModuleId">
+                                @item.ModuleName
+                            </button>
+                        </h2>
+                        <div id="coll_@item.ModuleId" class="accordion-collapse collapse" aria-labelledby="head_@item.ModuleId" data-bs-parent="#Acr_@item.ModuleId">
+                            <div class="accordion-body">
+                                <div class="card">
+                                    <div class="card-body">
+
+                                        <table class="table table-borderless">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Menu</th>
+                                                    <th scope="col">
+                                                        <div class="form-check form-switch" onclick="SelectUnselectFromHeader('@canViewKey')">
+                                                            @Html.CheckBoxFor(m=>m.PermissionDatas[indx].CanView,new {@class="form-check-input "+canViewKey+""})
+                                                            @Html.LabelFor(m=>m.PermissionDatas[indx].CanView,"Can View",new {@class="form-check-label "+canViewKey+""})
+                                                        </div>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <div class="form-check form-switch" onclick="SelectUnselectFromHeader('@canAddKey')">
+                                                            @Html.CheckBoxFor(m=>m.PermissionDatas[indx].CanAdd,new {@class="form-check-input "+canAddKey+""})
+                                                            @Html.LabelFor(m=>m.PermissionDatas[indx].CanAdd,"Can Add",new {@class="form-check-label "+canAddKey+""})
+                                                        </div>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <div class="form-check form-switch" onclick="SelectUnselectFromHeader('@canEditKey')">
+                                                            @Html.CheckBoxFor(m=>m.PermissionDatas[indx].CanEdit,new {@class="form-check-input "+canEditKey+""})
+                                                            @Html.LabelFor(m=>m.PermissionDatas[indx].CanEdit,"Can Edit",new {@class="form-check-label "+canEditKey+""})
+                                                        </div>
+                                                    </th>
+                                                    <th scope="col">
+                                                        <div class="form-check form-switch" onclick="SelectUnselectFromHeader('@canDeleteKey')">
+                                                            @Html.CheckBoxFor(m=>m.PermissionDatas[indx].CanDelete,new {@class="form-check-input "+canDeleteKey+""})
+                                                            @Html.LabelFor(m=>m.PermissionDatas[indx].CanDelete,"Can Delete",new {@class="form-check-label "+canDeleteKey+""})
+                                                        </div>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @{
+                                                    var childList = Model.PermissionDatas.Where(w => w.ParentId == item.ModuleId).ToList();
+                                                    @Html.HiddenFor(m=>m.PermissionDatas[indx].ModuleId)
+                                                    @Html.HiddenFor(m=>m.PermissionDatas[indx].ModuleName)
+                                                    @Html.HiddenFor(m=>m.PermissionDatas[indx].ParentId)
+                                                    var ViewKey = "C_CanView_" + indx;
+                                                    var AddKey = "C_CanAdd_" + indx;
+                                                    var EditKey = "C_CanEdit_" + indx;
+                                                    var DeleteKey = "C_CanDelete_" + indx;
+                                                    foreach (var childitem in childList)
+                                                    {
+                                                        int indexx = Model.PermissionDatas.FindIndex(a => a.ModuleId == childitem.ModuleId);
+                                                        @Html.HiddenFor(m=>m.PermissionDatas[indexx].ModuleId)
+                                                        @Html.HiddenFor(m=>m.PermissionDatas[indexx].ModuleName)
+                                                        @Html.HiddenFor(m=>m.PermissionDatas[indexx].ParentId)
+                                                        <tr>
+                                                            <td>@childitem.ModuleName</td>
+                                                            <td>
+                                                                <div class="form-check form-switch">
+                                                                    @Html.CheckBoxFor(m=>m.PermissionDatas[indexx].CanView,new {@class="form-check-input "+ViewKey+"",onclick="SelectUnselectFromChild('"+ViewKey+"')"})
+                                                                </div>
+                                                            </td>
+
+                                                            <td>
+                                                                <div class="form-check form-switch">
+                                                                    @Html.CheckBoxFor(m=>m.PermissionDatas[indexx].CanAdd,new {@class="form-check-input "+AddKey+"",onclick="SelectUnselectFromChild('"+AddKey+"')"})
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-check form-switch">
+                                                                    @Html.CheckBoxFor(m=>m.PermissionDatas[indexx].CanEdit,new {@class="form-check-input "+EditKey+"",onclick="SelectUnselectFromChild('"+EditKey+"')"})
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="form-check form-switch">
+                                                                    @Html.CheckBoxFor(m=>m.PermissionDatas[indexx].CanDelete,new {@class="form-check-input "+DeleteKey+"",onclick="SelectUnselectFromChild('"+DeleteKey+"')"})
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                }
+
+                                            </tbody>
+                                        </table>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+
+            <div class="text-end">
+                <br />
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" id="buttonReset" class="btn btn-secondary">Reset</button>
+            </div>
+        }
+    </div>
+</div>
+<script>
+
+    function SelectUnselectFromHeader(className) {
+        debugger;
+        var childclass = className.replace('H_', 'C_');
+        if ($("." + className).is(":checked")) {
+            $("." + childclass).prop('checked', true);
+        } else {
+            $("." + childclass).prop('checked', false);
+        }
+    }
+                            //function SelectUnselectFromChild(className) {
+                            //    debugger;
+                            //    if ($("." + className).is(":checked")) {
+                            //        $("." + className).prop('checked', false);
+                            //    } else {
+                            //        $("." + className).prop('checked', true);
+                            //    }
+                            //}
+
+</script>

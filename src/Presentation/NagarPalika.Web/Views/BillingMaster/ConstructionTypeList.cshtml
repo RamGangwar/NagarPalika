@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Construction Type List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/BillingMaster/ConstructionTypeList">Billing Master</a></li>
+            <li class="breadcrumb-item active">Construction Type List</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addConstructionType" id="btnAddNew">Add New</a>
+    </div>
+
+</div>
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="card">
+                    <h5 class="card-title">Construction Type List</h5>
+                    <table class="table datatable" id="tblConstructionTypeList">
+                        <thead>
+                            <tr>
+                                <th>Construction Type</th>
+                                <th>Created Date</th>
+                                <th>Created By</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="addConstructionType">
+</div>
+<script src="~/scripts/ConstructionType.js"></script>
+<script>
+    $(document).ready(function () {
+        bindConstructionTypeList();
+    });
+
+</script>

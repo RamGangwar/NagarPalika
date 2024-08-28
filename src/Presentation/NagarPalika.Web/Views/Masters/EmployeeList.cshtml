@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Employee List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Masters/EmployeeList">Masters</a></li>
+            <li class="breadcrumb-item active">Employee List</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" href="/Masters/AddEditEmployee" target="_blank" id="btnAddNew">Add New</a>
+    </div>
+
+</div>
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="card">
+                    <h5 class="card-title">Employee List</h5>
+                    <table class="table datatable" id="tblEmpList">
+                        <thead>
+                            <tr>
+                                <th>Employee Name </th>
+                                <th>User Name</th>
+                                <th>Father Name</th>
+                                <th>Mobile No.</th>
+                                <th>Email</th>
+                                <th>Department</th>
+                                <th>Designation</th>
+                                <th>Address</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="addEmployee">
+</div>
+<script src="~/scripts/Employee.js"></script>
+<script>
+    $(document).ready(function () {
+        bindEmpList();
+    });
+
+</script>

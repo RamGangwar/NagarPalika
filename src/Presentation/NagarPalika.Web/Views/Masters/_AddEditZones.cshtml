@@ -1,0 +1,49 @@
+﻿@using NagarPalika.Application.Commands.Zone
+@model CreateZonesCommand
+
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            @{
+                if (Model.ZoneId > 0)
+                {
+                    <h5 class="modal-title">Edit Zone</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Add Zone</h5>
+                }
+            }
+
+            <button type="button" class="btn-close popupclose" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            @using (Html.BeginForm("AddEditZones", "Masters", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditZones" }))
+            {
+                <div class="col-md-6">
+                    @Html.HiddenFor(h=>h.ZoneId)
+                    @Html.LabelFor(l=>l.ZoneName,"Zone Name*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.ZoneName,new{@class="form-control", placeholder="Zone Name"})
+                    @Html.ValidationMessageFor(v=>v.ZoneName)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.ZoneCode,"Zone Code*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.ZoneCode,new{@class="form-control", placeholder="Zone Code"})
+                    @Html.ValidationMessageFor(v=>v.ZoneCode)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.DistrictId,"District*" ,new{@class="form-label"})
+                    @Html.DropDownListFor(m=>m.DistrictId,new SelectList(ViewBag.DistrictList,"DistrictId","DistrictName"),"Select District",new{@class="form-control", placeholder="Zone Code"})
+                    @Html.ValidationMessageFor(v=>v.DistrictId)
+                </div>
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary popupclose" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

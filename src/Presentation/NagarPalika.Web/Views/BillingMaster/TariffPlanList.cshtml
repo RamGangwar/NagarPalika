@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Tariff Plan List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .textright {
+        text-align: right;
+    }
+</style>
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/BillingMaster/TariffPlanList">Billing Master</a></li>
+            <li class="breadcrumb-item active">Tariff Plan List</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" href="/BillingMaster/AddEditTariffPlan" target="_blank" id="btnAddNew">Add New</a>
+    </div>
+
+</div>
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="card">
+                    <h5 class="card-title">Tariff Plan List</h5>
+                    <table class="table datatable" id="tblTariffPlanList">
+                        <thead>
+                            <tr style="font-size:x-small">
+                                <th>PropertyType</th>
+                                <th>ARV Assessed</th>
+                                <th>House Tax Less Than For Assessed</th>
+                                <th>House Tax More Than For Assessed</th>
+                                <th>Water Tax Less Than For Assessed</th>
+                                <th>Water Tax More Than For Assessed</th>
+                                <th>Sewer Tax Less Than For Assessed</th>
+                                <th>Sewer Tax More Than For Assessed</th>
+                                <th>ARV Non Assessed</th>
+                                <th>House Tax Less Than For Non Assessed</th>
+                                <th>House Tax More Than For Non Assessed</th>
+                                <th>Water Tax Less Than For Non Assessed</th>
+                                <th>Water Tax More Than For Non Assessed</th>
+                                <th>Sewer Tax Less Than For Non Assessed</th>
+                                <th>Sewer Tax More Than For Non Assessed</th>
+                                <th>Created Date</th>
+                                <th>Created By</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="addTariffPlan">
+</div>
+<script src="~/scripts/TariffPlan.js"></script>
+<script>
+    $(document).ready(function () {
+        bindTariffPlanList();
+    });
+
+</script>

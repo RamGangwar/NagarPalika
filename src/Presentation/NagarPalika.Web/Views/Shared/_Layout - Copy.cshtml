@@ -1,0 +1,472 @@
+﻿
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="shortcut icon" href="~/images/favicon.ico" type="image/x-icon">
+    <title>AIDA Soft</title>
+    <!--[if IE]>
+    <script src="js/html5.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="~/css/stylesheet.css" type="text/css">
+    <link rel="stylesheet" href="~/css/responsive.css" type="text/css">
+     
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+    @*<script src="~/js/jquery.min.js"></script>*@
+    <script src="~/js/function.js"></script>
+    <script src="~/js/toggle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+
+    <style>
+        .swal-button--confirm{
+            background: -webkit-linear-gradient(top, rgba(111,173,251,1) 0%,rgba(43,137,255,1) 100%) !important;
+        }
+        .okButtonBlue {
+            background-color: #7cd1f9 !important; /*#202ae8 !important;*/
+            margin: 0px 0px 0px 10px;
+            color: #fff;
+        }
+
+        .dataTable {
+            width: 100% !important;
+        }
+
+        .dataTables_length label select {
+            width: 44%;
+            border: 1px solid #d1d1d1;
+            border-radius: 4px;
+            background: #f5f5f5 url(/images/select_arrow.png) no-repeat right 5px center;
+            padding: 3px 25px 4px 10px;
+            color: #666;
+            height: 35px;
+            /*margin-top: 5px;*/
+        }
+
+        table.dataTable thead .sorting, table.dataTable thead .sorting_asc, table.dataTable thead .sorting_desc, table.dataTable thead .sorting_asc_disabled, table.dataTable thead .sorting_desc_disabled {
+            background-repeat: no-repeat;
+            background-position: center left !important;
+        }
+
+        .sort {
+            padding: 0px;
+        }
+
+        .toast-top-center {
+            top: 20%;
+        }
+
+        .field-validation-error {
+            color: red;
+        }
+
+        .dataTables_length {
+            padding: 4px 2px 4px 5px !important;
+        }
+
+        .dataTables_length {
+            margin-left: 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <input id="hid_activemenu" value="" type="hidden" />
+    <div class="mainCon">
+        @Html.Partial("_Header.cshtml")
+
+        <div class="midCon">
+
+            @await Component.InvokeAsync("Leftmenu")
+            @*@Html.Partial("_LeftMenu.cshtml")*@
+            <div class="RgtPart transition">
+                <div  id="progress" style="display:none;" class="loaderOuter">
+                    <div class="loader" style="pointer-events:none;"></div>
+                    @*<div id="loading-div" class="ui-corner-all">
+                        <div id="loadingbar"><i class="fa fa-spinner fa-spin fa-3x fa-fw"></i></div>
+                        <h2 style="color:gray;font-weight:normal;">Please wait....</h2>
+                        </div>*@
+                </div>
+                @RenderBody()
+            </div>
+        </div>
+
+
+
+        <footer class="footer transition">
+            <div>&copy; @DateTime.Now.Year AIDA Soft. All rights reserved. | Privacy</div>
+        </footer>
+    </div>
+
+
+    <!--Start Success Popup-->
+    <div class="overlay" id="successPopup">
+        <div class="popupInner flexBox itemCenter">
+            <div class="popupBox">
+                <div class="tac"><img src="~/images/sucess_icon.png" alt=""></div>
+                <div id="success">
+                    <div class="successHd tac">Success</div>
+                    <div class="successTxt tac">You have successfully added a new item master.</div>
+                </div>
+                <div class="tac"><button onclick="window.location='item-master.html'" class="cancelBtn smllBtn close">Close</button></div>
+            </div>
+        </div>
+    </div>
+    <!--End Success Popup-->
+
+
+
+    <input type="hidden" value="false" id="hdnEditMode" />
+    <script src="~/js/jquery.mCustomScrollbar.js"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            if ($('.datePicker').val() == '__/__/____') {
+                $('.datePicker').val('');
+            }
+            $(document).ajaxError(function (e, xhr, settings) {
+                if (xhr.status == 401) {
+                    window.location.href = "/Home/Index";
+                }
+            });
+        });
+
+    </script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $(function () {
+                var originalUrl = window.location.origin;
+                var fullUrl = window.location.href;
+                fullUrl = fullUrl.replace(originalUrl, '');
+                $("nav ul li a").each(function () {
+                    var curhref = $(this).attr('href');
+
+                    if (fullUrl.includes(curhref)) {
+                        if (curhref.includes('/ChartAccount/ChartAccountList') || curhref.includes('/User/CreateUser') || curhref.includes('/User/Supplier') || curhref.includes('/User/Setting')) {
+                            $('.showMenu').click();
+                            //$('#dropdown01').attr("data-toggle", "");
+                            //$('#liadmin').addClass('active');
+                            //$('#lihome').removeClass('active');
+                        }
+                        else if (curhref.includes('/Reporting/ComplaintErrorOverview') || curhref.includes('/Reporting/ErrorComplaintReport') || curhref.includes('/Reporting/ReportAnalytic')) {
+                            $('#dropdown02').click();
+                            $('#dropdown02').attr("data-toggle", "");
+                            $('#lireporting').addClass('active');
+                            $('#lihome').removeClass('active');
+                        }
+                        //$(this).css('color', 'yellow');
+                        //$(this).closest('li').addClass('active');
+                        $(this).addClass('current');
+                    }
+
+                });
+            })
+        })
+
+
+    </script>
+
+    <script>
+            $(document).ready(function (e) {
+                $("#ddlCountry").val(1);
+            });
+            (function ($) {
+                $(window).on("load", function () {
+                    $.mCustomScrollbar.defaults.scrollButtons.enable = true;
+                    $.mCustomScrollbar.defaults.axis = "yx";
+                    $(".leftScroll").mCustomScrollbar();
+
+                });
+            })(jQuery);
+
+            $(document).on("keypress", ".AllowLetterWithSpace", function (e) {
+                var inputValue = event.which;
+                // allow letters and whitespaces only.
+                if (!(inputValue >= 65 && inputValue <= 123) && (inputValue != 32 && inputValue != 0)) {
+                    event.preventDefault();
+                }
+            });
+
+            $(document).on("keypress", ".SpaceNotAllow", function (e) {
+                var inputValue = event.which;
+                 // allow letters and whitespaces only.
+                if (inputValue == 32) {
+                    event.preventDefault();
+                }
+            });
+
+
+            $(document).on("input", ".AllowDecimal", function (e) {
+                $(this).val($(this).val().replace(/[^\d.]/g, ''));
+            });
+
+
+            $(document).on("input", ".twodecimalpoint", function (event) {
+                var val = this.value;
+                var re = /^([0-9]+[\.]?[0-9]?[0-9]?|[0-9]+)$/g;
+                var re1 = /^([0-9]+[\.]?[0-9]?[0-9]?|[0-9]+)/g;
+                if (re.test(val)) {
+                    //do something here
+
+                } else {
+                    val = re1.exec(val);
+                    if (val) {
+                        this.value = val[0];
+                    } else {
+                        this.value = "";
+                    }
+                }
+            });
+
+            $(".AllowDecimal").on('paste', function (e) {
+
+                if (gBrowser == 'IE') {
+                    var clipboardData, pastedData;
+                    clipboardData = e.clipboardData || window.clipboardData;
+                    pastedData = clipboardData.getData('Text');
+
+                }
+                else if ((gBrowser == 'Firefox') || (gBrowser == 'Chrome')) {
+                    var pastedData = (e.originalEvent || e).clipboardData.getData('text/plain');
+                    window.document.execCommand('insertText', false, pastedData)
+                }
+                if (Math.floor(pastedData) == pastedData && $.isNumeric(pastedData)) {
+                    $(this).val($(this).val().replace(/[^\d.]/g, ''));
+                }
+                else {
+                    return false;
+                }
+            });
+
+            $('.phoneFormat').on('input', function () {
+                var number = $(this).val().replace(/[^\d]/g, '')
+                if (number.length == 7) {
+                    number = number.replace(/(\d{3})(\d{4})/, "$1-$2");
+                } else if (number.length == 10) {
+                    number = number.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+                }
+
+                $(this).val(number)
+            });
+            function validateFloatKeyPress(el)
+            {
+                var v = parseFloat(el.value);
+                var s = el.value.split(".")[0];
+                var s2 = el.value.split(".")[1];
+                var temp = "";
+                if (s.length > 8)
+                {
+                    temp = s.substring(0, 8);
+                    temp = temp + "." + s2;
+                    el.value = (isNaN(temp)) ? '' : Number.parseFloat(temp).toFixed(2);
+                }
+                else
+                {
+                    el.value = (isNaN(v)) ? '' : Number.parseFloat(v).toFixed(2);
+                }
+
+            }
+            function persentageValidation(el)
+            {
+                var persentagevalue = el.value;
+                console.log(persentagevalue);
+                var regex = /(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$/;
+                if (persentagevalue != NaN && persentagevalue != "" && persentagevalue != "0")
+                {
+                     persentagevalue = parseFloat(el.value);
+                    if (!regex.test(persentagevalue)) {
+                        $("#spnAmount").text("");
+                        $("#spnAmount").show();
+                        $("#spnAmount").text("Amount should be in 100%");
+                        isValid = false;
+                    } else {
+                        $("#spnAmount").text("");
+                        $("#spnAmount").hide();
+                        isValid = true;
+                    }
+                }
+                else
+                {
+
+                    $("#spnAmount").text("");
+                    $("#spnAmount").show();
+                    $("#spnAmount").text("Amount is required");
+                }
+
+            }
+            function persentageValidationPmc(el) {
+                var persentagevalue = el.value;
+                console.log(persentagevalue);
+                var regex = /(^100([.]0{1,2})?)$|(^\d{1,2}([.]\d{1,2})?)$/;
+                if (persentagevalue != NaN && persentagevalue != "" && persentagevalue != "0") {
+                    persentagevalue = parseFloat(el.value);
+                    if (!regex.test(persentagevalue)) {
+                        $("#spanAmountVal").text("");
+                        $("#spanAmountVal").show();
+                        $("#spanAmountVal").text("Finance Charge shoule be a %");
+                        isValid = false;
+                    } else {
+                        $("#spanAmountVal").text("");
+                        $("#spanAmountVal").hide();
+                        isValid = true;
+                    }
+                }
+                else {
+
+                    $("#spanAmountVal").text("");
+                    $("#spanAmountVal").show();
+                    $("#spanAmountVal").text("Finance Charge is required");
+                }
+
+            }
+
+            $(document).on("input", ".AllowNumeric", function (e) {
+                this.value = this.value.replace(/[^\d]/g, '');
+            });
+            $('.zip-val').on('change', function ()
+            {
+                if (zipcode.length == 5) {
+                    $(this).val(zipcode.substring(0, 5) + "-" + "0000");
+                }
+                if (zipcode.length < 5 && zipcode.length !=0)
+                {
+                    swal("Error", "Please enter valid zip code number!", "error");
+                }
+            });
+            $(".zip-val").keyup(function ()
+            {
+                zipcode = $(this).val();
+                zipcode = zipcode.replace(/-/g, '');
+                if (zipcode.length > 5)
+                {
+                    $(this).val(zipcode.substring(0, 5) + "-" + zipcode.substring(5));
+                }
+            });
+
+            $(".AllowNumeric").on('paste', function (e) {
+
+                if (gBrowser == 'IE') {
+                    var clipboardData, pastedData;
+                    clipboardData = e.clipboardData || window.clipboardData;
+                    pastedData = clipboardData.getData('Text');
+
+                }
+                else if ((gBrowser == 'Firefox') || (gBrowser == 'Chrome')) {
+                    var pastedData = (e.originalEvent || e).clipboardData.getData('text/plain');
+                    window.document.execCommand('insertText', false, pastedData)
+                }
+                if (Math.floor(pastedData) == pastedData && $.isNumeric(pastedData)) {
+                    $(this).val($(this).val().replace(/[^\d]/g, ''));
+                }
+                else {
+                    return false;
+                }
+            });
+
+            $(document).ajaxError(function (xhr, props) {
+            if (props.status === 401) {
+                window.location.href = '@Url.Action("Index", "Home", new { area = "" })';
+                }
+
+        });
+
+    </script>
+    <script src="~/js/jquery.datetimepicker.full.js"></script>
+    <script>
+        $('.datePicker').datetimepicker({
+            format: 'm/d/Y',
+            timepicker: false,
+            scrollMonth: false,
+            scrollTime: false,
+            scrollInput: false,
+            mask: "99/99/9999",
+            showOn: 'focus',
+
+        });
+        $('.datePicker').attr("placeholder", "__/__/____");
+        $(document).ready(function () {
+
+            $(".datePicker").keypress(function (event)
+            {
+                return ((event.keyCode || event.which) === 9 ? true : false);
+            });
+
+            $('body').on('keydown', '.firstspaceval', function (e) {
+                if (e.which === 32 && e.target.selectionStart === 0) {
+                    return false;
+                }
+            });
+            $('body').on('keydown', '.firstDotVal', function (e) {
+                if (e.which === 190 && e.target.selectionStart === 0) {
+                    return false;
+                }
+            });
+        });
+    </script>
+    <script type="text/javascript" charset="utf8" src="https:////cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <link href="//cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="//cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <script>
+        toastr.options = {
+            positionClass: 'toast-top-center'
+        };
+    </script>
+
+    <script src="~/Script/LogIn.js"></script>
+
+    <script type="text/javascript">
+
+        function setActivemenu() {
+            var _prevmenu = $('#hid_activemenu').val();
+            _prevmenu = sessionStorage.getItem('prevmenuactive');
+            $('#' + '' + _prevmenu + '').addClass('active');
+            $($('.lftMenu').find('.active')).find('ul').css('display', 'block');
+            //sessionStorage.setItem('prevmenuactive', null)
+
+        }
+
+        $('.liclass').click(function () {
+            sessionStorage.setItem('prevmenuactive', null)
+            $('#hid_activemenu').val($(this).attr('id'));
+            sessionStorage.setItem('prevmenuactive', $(this).attr('id'))
+        });
+        setTimeout(function () { setActivemenu(); }, 500)
+
+        $(".isEditMode").on("click change",function () {
+            $("#hdnEditMode").val(true);
+            $(document).attr('title', 'Dalorian*');
+        });
+        $(".isEditConfirmation").click(function () {
+            if ($("#hdnEditMode").val() == "true") {
+                event.preventDefault();
+                swal({
+                    title: "You have made some changes, do you want to save it?",
+                    icon: "warning",
+                    buttons: ["No", "Yes"],//true,
+                    dangerMode: true,
+                }).then(val => {
+                    if (!val) throw window.location.href = $(this).attr('href');
+                });
+                $(".swal-button--confirm").addClass("okButtonBlue");
+                $(".swal-button--cancel").parent('div').css('float', 'right');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+﻿@using NagarPalika.Application.Commands.Districts
+@model CreateDistrictCommand
+
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            @{
+                if (Model.DistrictId > 0)
+                {
+                    <h5 class="modal-title">Edit District</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Add District</h5>
+                }
+            }
+
+            <button type="button" class="btn-close popupclose"  data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            @using (Html.BeginForm("AddEditDistrict", "Masters", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditDistrict" }))
+            {
+                <div class="col-md-6">
+                    @Html.HiddenFor(h=>h.DistrictId)
+                    @Html.LabelFor(l=>l.DistrictName,"District Name*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.DistrictName,new{@class="form-control", placeholder="District Name"})
+                    @Html.ValidationMessageFor(v=>v.DistrictName)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.DistrictCode,"District Code*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.DistrictCode,new{@class="form-control", placeholder="District Code"})
+                    @Html.ValidationMessageFor(v=>v.DistrictCode)
+                </div>
+                                
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary popupclose" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>

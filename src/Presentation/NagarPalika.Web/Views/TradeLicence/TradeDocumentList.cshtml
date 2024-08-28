@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Trade Document List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/TradeLicence/TradeDocumentList">Trade & Licence</a></li>
+            <li class="breadcrumb-item active">Trade Document List</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addTradeDocument" id="btnAddNew">Add New</a>
+    </div>
+
+</div>
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="card">
+                    <h5 class="card-title">Trade Document List</h5>
+                    <table class="table datatable" id="tblTradeDocumentList">
+                        <thead>
+                            <tr>
+                                <th>Document</th>
+                                <th>Created Date</th>
+                                <th>Created By</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="addTradeDocument">
+</div>
+<script src="~/scripts/TradeDocument.js"></script>
+<script>
+    $(document).ready(function () {
+        bindTradeDocumentList();
+    });
+
+</script>

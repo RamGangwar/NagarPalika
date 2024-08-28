@@ -1,0 +1,69 @@
+﻿@using NagarPalika.Domain.ViewModels
+@model IEnumerable<ModulesVM>
+
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " href="/Home/Dashboard">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+        @{
+            var parentlist = Model.Where(w => w.ParentId == 0).ToList();
+            foreach (var item in parentlist)
+            {
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#@item.ModuleName.Replace('&','N').Replace(' ','-')-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-journal-text"></i><span>@item.ModuleName</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="@item.ModuleName.Replace('&','N').Replace(' ','-')-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        @{
+                            var childList = Model.Where(w => w.ParentId == item.ModuleId).ToList();
+                            foreach (var childitem in childList)
+                            {
+                                <li>
+                                    <a href="@childitem.PageURL">
+                                        <i class="bi bi-circle"></i><span>@childitem.ModuleName</span>
+                                    </a>
+                                </li>
+                            }
+
+                        }
+                    </ul>
+                </li>
+            }
+            <!-- End Forms Nav -->
+        }
+
+
+
+
+        @*<li class="nav-item">
+        <a class="nav-link collapsed" href="users-profile.html">
+        <i class="bi bi-person"></i>
+        <span>Profile</span>
+        </a>
+        </li><!-- End Profile Page Nav -->
+
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-contact.html">
+        <i class="bi bi-envelope"></i>
+        <span>Contact</span>
+        </a>
+        </li><!-- End Contact Page Nav -->
+
+        <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-register.html">
+        <i class="bi bi-card-list"></i>
+        <span>Register</span>
+        </a>
+        </li><!-- End Register Page Nav -->*@
+
+    </ul>
+
+</aside><!-- End Sidebar-->

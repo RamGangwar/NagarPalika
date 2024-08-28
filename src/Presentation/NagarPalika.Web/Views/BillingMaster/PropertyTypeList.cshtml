@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Property Type List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .textright {
+        text-align: right;
+    }
+</style>
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/BillingMaster/PropertyTypeList">Billing Master</a></li>
+            <li class="breadcrumb-item active">Property Type List</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addPropertyType" id="btnAddNew">Add New</a>
+    </div>
+
+</div>
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="card">
+                    <h5 class="card-title">Property Type List</h5>
+                    <table class="table datatable" id="tblPropertyTypeList">
+                        <thead>
+                            <tr>
+                                <th>Grade </th>
+                                <th>PropertyType</th>
+                                <th>Factor</th>
+                                <th>Created Date</th>
+                                <th>Created By</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="addPropertyType">
+</div>
+<script src="~/scripts/PropertyType.js"></script>
+<script>
+    $(document).ready(function () {
+        bindPropertyTypeList();
+    });
+
+</script>

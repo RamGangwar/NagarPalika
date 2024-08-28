@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Depriciation Slab List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="pagetitle">
+
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/BillingMaster/DepriciationSlabList">Billing Master</a></li>
+            <li class="breadcrumb-item active">Depriciation Slab List</li>
+        </ol>
+    </nav>
+    <div class="rinput">
+        <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addDepriciationSlab" id="btnAddNew">Add New</a>
+    </div>
+
+</div>
+<section class="section dashboard">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="card">
+                    <h5 class="card-title">Depriciation Slab List</h5>
+                    <table class="table datatable" id="tblDepriciationSlabList">
+                        <thead>
+                            <tr>
+                                <th>Property Type</th>
+                                <th>Start Value</th>
+                                <th>End Value</th>
+                                <th>Value</th>
+                                <th>Created Date</th>
+                                <th>Created By</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="addDepriciationSlab">
+</div>
+<script src="~/scripts/DepriciationSlab.js"></script>
+<script>
+    $(document).ready(function () {
+        bindDepriciationSlabList();
+    });
+
+</script>

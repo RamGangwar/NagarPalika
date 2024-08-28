@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewData["Title"] = "Employee Permission";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="pagetitle">
+
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/Masters/EmployeeList">Masters</a></li>
+                <li class="breadcrumb-item active">Permission List</li>
+            </ol>
+        </nav>
+        <div class="rinput">
+            @Html.DropDownList("ddlRole",new SelectList(ViewBag.RoleList, "RoleId", "RoleName"),"Select Role", new{@class="form-control",Id="ddlRole"})
+        </div>
+
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12" id="dvSecurity">
+            </div>
+
+        </div>
+    </section>
+    
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        BindModules();
+    })
+
+    function BindModules() {
+        ;
+        $("#progress").show();
+
+        $.ajax({
+            type: "GET",
+            url: "/Masters/BindPermissionList",
+            datatype: "html",
+            success: function (response) {
+                $("#progress").hide();
+                $('#dvSecurity').empty().html(response);
+            }
+        })
+    }
+
+
+    $(document).on('change', '#ddlRole', function () {
+        $("#progress").show();
+        if ($('#ddlRole').val() == "") {
+            $('#spnValidateRole').show();
+        }
+        else {
+            $('#spnValidateRole').hide();
+            $.ajax({
+                type: "GET",
+                url: "/Masters/BindPermissionList",
+                data: { RoleId: $('#ddlRole').val() },
+                datatype: "html",
+                success: function (response) {
+                    $("#progress").hide();
+                    $("#hdnRoleId").val($('#ddlRole').val());
+                    $('#dvSecurity').empty().html(response);
+                }
+            })
+        }
+    })
+
+   
+
+    //$(document).on('change', '#ddlModule', function () {
+    //    var roleValue = $('#ddlRole').val();
+    //    var userValue = $('#ddlUser').val();
+    //    var moduleValue = $('#ddlModule').val();
+
+    //    $("#progress").show();
+    //    $.ajax({
+    //        type: "GET",
+    //        url: "/SetUp/BindSecuritylevel",
+    //        data: { Id: $('#ddlUser').val(), Type: 'User', SecType: 'User', ModuleId: $('#ddlModule').val() },
+    //        datatype: "html",
+    //        success: function (response) {
+    //            $("#progress").hide();
+    //            $('#dvSecurity').empty().html(response);
+    //            $('#ddlUser').val(userValue);
+    //            $('#ddlModule').val(moduleValue);
+    //            $('#ddlRole option:selected').val(roleValue);
+    //        }
+    //    })
+
+    //})
+
+    $(document).on('submit', '#frmAssignPermission', function (e) {
+        debugger;
+        e.preventDefault();
+        var RetValidate = ValidateAssignSecurity();
+        console.log($(this).serialize());
+        if (RetValidate == true) {
+            $('#progress').show();
+            $.ajax({
+                type: $(this).attr("method"),
+                url: "/Masters/AssignPermission",
+                data: $(this).serialize(),
+                datatype: "json",
+                success: function (response) {
+
+                    if (response.succeeded) {
+                        swal({
+                            title: "Success",
+                            icon: "success",
+                            button: "OK",
+                            text: "Permission assigned successfully.",
+                            type: "success",
+                            closeOnClickOutside: false
+                        });
+                        //.then(val => {
+                        //    //window.location.reload(1);
+                        //    var roleValue = $('#ddlRole').val();
+                        //    var userValue = $('#ddlUser').val();
+                        //    var moduleValue = $('#ddlModule').val();
+                        //    // $('#ddlUser').val(userValue);
+                        //    $.ajax({
+                        //        type: "GET",
+                        //        url: "/SetUp/BindSecuritylevel",
+                        //        data: { Id: $('#ddlUser').val(), Type: 'User', SecType: 'User', ModuleId: $('#ddlModule').val() },
+                        //        datatype: "html",
+                        //        success: function (response) {
+                        //            $("#progress").hide();
+                        //            $('#dvSecurity').empty().html(response);
+                        //            $('#ddlUser').val(userValue);
+                        //            $('#ddlModule').val(moduleValue);
+                        //            $('#ddlRole option:selected').val(roleValue);
+                        //        }
+                        //    })
+
+
+                        //});
+                    }
+                    else {
+                        swal({
+                            title: "Some error occured.",
+                            icon: "error",
+                            button: "OK",
+                            closeOnClickOutside: false
+                        });
+                    }
+                    $('#progress').hide();
+                },
+                error: function () {
+                    $('#progress').hide();
+                }
+
+            })
+        }
+    })
+
+    function ValidateAssignSecurity() {
+        var ret = true;
+        if ($('#ddlRole').val() == "") {
+            $('#ddlRole').focus();
+            ret = false;
+        }
+        
+        return ret;
+    }
+
+</script>

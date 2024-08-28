@@ -1,0 +1,46 @@
+﻿@using NagarPalika.Application.Commands.MutationTypes
+@model CreateMutationTypeCommand
+
+
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            @{
+                if (Model.MutationTypeId > 0)
+                {
+                    <h5 class="modal-title">Edit Mutation Type</h5>
+                }
+                else
+                {
+                    <h5 class="modal-title">Add Mutation Type</h5>
+                }
+            }
+
+            <button type="button" class="btn-close popupclose" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            @using (Html.BeginForm("AddEditMutationType", "BillingMaster", FormMethod.Post, new { @class = "row g-3", id = "frmAddEditMutationType", enctype = "multipart/form-data" }))
+            {
+
+                <div class="col-md-6">
+                    @Html.HiddenFor(h=>h.MutationTypeId)
+                    @Html.LabelFor(l=>l.MutationTypeName,"Mutation Type*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.MutationTypeName,new{@class="form-control", placeholder="Mutation Type"})
+                    @Html.ValidationMessageFor(v=>v.MutationTypeName)
+                </div>
+                <div class="col-md-6">
+                    @Html.LabelFor(l=>l.MutationFee,"Mutation Fee*" ,new{@class="form-label"})
+                    @Html.TextBoxFor(m=>m.MutationFee,new{@class="form-control", placeholder="Mutation Fee",onkeypress="return isNumberKey(event,this)"})
+                    @Html.ValidationMessageFor(v=>v.MutationFee)
+                </div>
+
+
+                <div class="text-end">
+                    <button type="button" class="btn btn-secondary popupclose" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
